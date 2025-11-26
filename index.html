@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SCT-Unit1</title>
+
+  <style>
+    /* THEME VARIABLES */
+    :root {
+      --bg:#ffffff; 
+      --text:#0b1220; 
+      --card:#f5f7fb; 
+      --muted:#556;
+      --accent:#0b5fff; 
+      --console-bg:#e9eef8; 
+      --console-text:#07203a;
+      --heading-bg:#eef5ff;
+      --pre-bg:#0b1220;
+      --pre-text:#eaf1ff;
+    }
+    
+    /* DARK MODE */
+    body.dark {
+      --bg:#071018; 
+      --text:#e6eef6; 
+      --card:#0b1220; 
+      --muted:#9aa6b2;
+      --accent:#58a6ff; 
+      --console-bg:#0b1220; 
+      --console-text:#dbeafe;
+      --heading-bg:#021022;
+      --pre-bg:#0f1a28;
+      --pre-text:#d9e6ff;
+    }
+
+    * { box-sizing: border-box }
+
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+        Roboto, "Helvetica Neue", Arial;
+      background: var(--bg);
+      color: var(--text);
+      transition: background .25s linear, color .25s linear;
+    }
+
+    .container { max-width: 980px; margin: 0 auto; }
+
+    header {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), #6ec1ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+    }
+
+    h1, h2, h3 {
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .controls { display: flex; gap: 8px; align-items: center; }
+
+    .btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background-color 0.25s ease;
+    }
+
+    .btn:hover { background-color: #0a3fc8; }
+
+    .btn.ghost {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid rgba(0,0,0,0.06);
+      font-weight: 600;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 18px;
+      border-radius: 14px;
+      margin-bottom: 22px;
+      line-height: 1.6;
+    }
+
+    pre.code {
+      background: var(--pre-bg);
+      color: var(--pre-text);
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 14px;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    /* TABLES */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+      overflow-x: auto;
+      display: block;
+    }
+    th, td {
+      border: 1px solid #9993;
+      padding: 8px;
+    }
+
+    /* MOBILE RESPONSIVENESS */
+    @media (max-width: 600px) {
+      body {
+        padding: 12px;
+        font-size: 15px;
+      }
+
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .logo {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+
+      .container {
+        width: 100%;
+        padding: 0;
+      }
+
+      pre.code {
+        font-size: 13px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #eef2f7; margin:0; padding:0;">
+
+  <div style="max-width: 900px; margin: 50px auto; padding: 30px; background: #ffffff; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.15);">
+
+    <h1 style="color: #1e3a8a; text-align: center; margin-bottom: 30px; font-size: 2.2rem; letter-spacing: 1px;">🔒 Access Control & Trusted Objects</h1>
+
+    <p style="font-size: 16px; line-height: 1.8; color: #334155;">
+      <strong>Definition:</strong> Access control ensures <em>who can access what</em> in a system. Trusted system objects are sensitive resources like files, processes, or tokens that require protection.
+    </p>
+
+    <div style="background-color: #e0f2fe; padding: 15px 20px; border-left: 5px solid #0284c7; border-radius: 10px; margin: 20px 0;">
+      <h2 style="color: #0369a1; margin-top:0;">🔑 Types of Access Control</h2>
+      <ul style="color: #1e293b; font-size: 15px; line-height: 1.6; margin-left: 20px;">
+        <li><strong>DAC (Discretionary):</strong> Owner decides access.</li>
+        <li><strong>MAC (Mandatory):</strong> System enforces strict rules.</li>
+        <li><strong>RBAC (Role-Based):</strong> Access based on user roles.</li>
+        <li><strong>ABAC (Attribute-Based):</strong> Access based on user/object attributes.</li>
+      </ul>
+    </div>
+
+    <div style="background-color: #fef9c3; padding: 15px 20px; border-left: 5px solid #eab308; border-radius: 10px; margin: 20px 0;">
+      <h2 style="color: #b45309; margin-top:0;">🛡️ Managing Trusted Objects</h2>
+      <ol style="color: #78350f; font-size: 15px; line-height: 1.6; margin-left: 20px;">
+        <li><strong>Identify & Classify:</strong> Locate important objects and mark their sensitivity.</li>
+        <li><strong>Set Access Rules:</strong> Use least privilege—assign only necessary permissions.</li>
+        <li><strong>Enforce Controls:</strong> Apply DAC, MAC, RBAC, or ABAC appropriately.</li>
+        <li><strong>Audit & Monitor:</strong> Log all access and check for suspicious activity.</li>
+        <li><strong>Update Regularly:</strong> Revoke permissions for inactive users or outdated objects.</li>
+      </ol>
+    </div>
+
+    <div style="background-color: #d1fae5; padding: 15px 20px; border-left: 5px solid #059669; border-radius: 10px; margin: 20px 0;">
+      <h2 style="color: #065f46; margin-top:0;">🌟 Benefits</h2>
+      <ul style="color: #065f46; font-size: 15px; line-height: 1.6; margin-left: 20px;">
+        <li>Prevents unauthorized access.</li>
+        <li>Reduces privilege escalation risks.</li>
+        <li>Protects sensitive data.</li>
+        <li>Ensures reliable system operation.</li>
+      </ul>
+    </div>
+
+
+
+  </div>
+
+</body>
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #e9f0f5; color: #1c3d5a; margin: 20px; line-height: 1.7;">
+
+  <div style="max-width: 900px; margin: auto; background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+    
+    <h1 style="text-align: center; color: #1a5276;">Memory Management Concepts</h1>
+
+    <section style="margin-top: 25px;">
+      <h2 style="color: #154360;">Overview</h2>
+      <p>Memory management involves managing resources during program execution. Proper management ensures efficient allocation and deallocation of memory. Mismanagement can lead to vulnerabilities like unauthorized access, memory leaks, and crashes.</p>
+    </section>
+
+    <section style="margin-top: 25px;">
+      <h2 style="color: #154360;">Key Concepts</h2>
+      <ul>
+        <li><strong>Managed vs Unmanaged Code:</strong>
+          <ul>
+            <li><strong>Managed:</strong> Runtime handles memory (e.g., Java, .NET). Garbage collection reduces leaks and enforces type safety.</li>
+            <li><strong>Unmanaged:</strong> Programmer manually manages memory (e.g., C/C++). Risks include dangling pointers, overflows, and memory corruption.</li>
+          </ul>
+        </li>
+        <li><strong>Type Safety:</strong> Prevents unauthorized memory access using static (compile-time) or dynamic (runtime) checks.</li>
+        <li><strong>Locality & ASLR:</strong> Randomizes memory layout (Address Space Layout Randomization) to reduce predictability and buffer overflow risks.</li>
+      </ul>
+    </section>
+
+    <section style="margin-top: 25px;">
+      <h2 style="color: #154360;">Safe Memory Management Practices</h2>
+      <ul>
+        <li><strong>Garbage Collection & Cleanup:</strong> Use managed environments or explicitly free memory in unmanaged code.</li>
+        <li><strong>Avoid Buffer Overflows:</strong> Validate input lengths; use safe functions (e.g., <code>strncpy</code> vs <code>strcpy</code>).</li>
+        <li><strong>Secure Allocation/Deallocation:</strong> Zero out sensitive data; use memory-safe libraries.</li>
+        <li><strong>Type-Safe Languages:</strong> Java, C#, Python enforce memory boundaries.</li>
+        <li><strong>Minimize Privileged Access:</strong> Limit scope of sensitive data; avoid global variables.</li>
+        <li><strong>Tokenization:</strong> Store tokens instead of sensitive data in memory.</li>
+      </ul>
+    </section>
+
+    <section style="margin-top: 25px;">
+      <h2 style="color: #154360;">Secure Memory Management Plan</h2>
+      <ul>
+        <li>Inventory memory resources and sensitive data locations.</li>
+        <li>Control memory allocation; avoid unnecessary dynamic allocation.</li>
+        <li>Enforce strict access control and type safety.</li>
+        <li>Implement garbage collection or manual deallocation.</li>
+        <li>Validate inputs to prevent overflows.</li>
+        <li>Handle errors safely to avoid leaks.</li>
+        <li>Monitor and test memory via code reviews, fuzz testing, and profiling.</li>
+      </ul>
+    </section>
+
+  </div>
+</body>
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin:0; padding:20px; background:#f5f7fa; color:#2c3e50;">
+ <div style="max-width: 900px; margin: auto; background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+
+  <h2 style="text-align:center; margin-bottom:5px;">Sandboxing in Secure Coding</h2>
+  <p style="text-align:center; color:#4a5568; margin-bottom:30px;">Learn about secure code execution in a safe environment</p>
+
+  <!-- Definition & Purpose -->
+  <div style="background:#e0f2f1; padding:15px 20px; border-radius:10px; margin-bottom:20px;">
+    <h3 style="margin-top:0; color:#00695c;">Definition & Purpose</h3>
+    <p>A <strong>sandbox</strong> is a restricted execution environment that isolates applications or code from the host system. It prevents malicious code from affecting the OS or other applications.</p>
+  </div>
+
+  <!-- How It Works -->
+  <div style="background:#ffffff; padding:15px 20px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); margin-bottom:20px;">
+    <h3 style="margin-top:0; color:#1e88e5;">How It Works</h3>
+    <ul style="line-height:1.7;">
+      <li>Runs applications in a <strong>virtualized or controlled environment</strong>.</li>
+      <li>Controls access to <strong>CPU, memory, filesystem, and network</strong>.</li>
+      <li>Often uses <strong>whitelisting</strong> for allowed resources.</li>
+      <li>Common in <strong>web browsers, mobile apps, and containerized applications</strong>.</li>
+    </ul>
+  </div>
+
+  <!-- Merits -->
+  <div style="background:#e3f2fd; padding:15px 20px; border-radius:10px; margin-bottom:20px;">
+    <h3 style="margin-top:0; color:#0d47a1;">Merits</h3>
+    <ul style="line-height:1.7;">
+      <li><strong>Isolation:</strong> Limits impact of malicious code.</li>
+      <li><strong>Controlled Resource Access:</strong> Prevents unauthorized memory, network, or storage access.</li>
+      <li><strong>Improved Security:</strong> Reduces system compromise risk.</li>
+      <li><strong>Safe Testing:</strong> Allows testing new code or malware safely.</li>
+      <li><strong>Compliance:</strong> Supports regulatory security requirements.</li>
+    </ul>
+  </div>
+
+  <!-- Secure Coding Guidelines -->
+  <div style="background:#ffffff; padding:15px 20px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); margin-bottom:20px;">
+    <h3 style="margin-top:0; color:#2e7d32;">Secure Coding Guidelines</h3>
+    <ul style="line-height:1.7;">
+      <li>Always run untrusted code in a sandbox.</li>
+      <li>Use containers (e.g., Docker) for isolation.</li>
+      <li>Restrict system calls and network access.</li>
+      <li>Monitor sandboxed execution for suspicious activity.</li>
+    </ul>
+  </div>
+</div>
+</body>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; background-color: #f9f9f9; color: #111;">
+<div style="max-width: 900px; margin: auto; background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+
+  <h1 style="text-align: center; color: #1a73e8;">Data Protection Practices</h1>
+  <p style="text-align: center; max-width: 700px; margin: 0 auto 20px;">
+    Data protection ensures that sensitive information is safe from unauthorized access, misuse, or loss. 
+    It involves techniques in coding, system configuration, and monitoring.
+  </p>
+
+  <div style="max-width: 700px; margin: 0 auto;">
+
+    <h2 style="color: #0b3d91;">1. Secure Coding</h2>
+    <ul>
+      <li>Validate all user inputs to prevent SQL injection, XSS, and other attacks.</li>
+      <li>Sanitize outputs before displaying data.</li>
+      <li>Handle errors safely without exposing system details.</li>
+    </ul>
+
+    <h2 style="color: #0b3d91;">2. Cryptography</h2>
+    <ul>
+      <li>Encrypt sensitive data at rest and in transit.</li>
+      <li>Use strong, standard algorithms like AES, RSA, or SHA-256.</li>
+      <li>Protect and rotate encryption keys regularly.</li>
+      <li>Apply hashing with salt for passwords.</li>
+    </ul>
+
+    <h2 style="color: #0b3d91;">3. Logging, Monitoring & Testing</h2>
+    <ul>
+      <li>Maintain detailed logs of user actions and system events.</li>
+      <li>Avoid logging sensitive information like passwords or tokens.</li>
+      <li>Perform regular vulnerability assessments (SAST, DAST).</li>
+      <li>Conduct penetration and fuzz testing to find weak points.</li>
+      <li>Monitor systems continuously for unusual behavior or attacks.</li>
+    </ul>
+
+    <h2 style="color: #0b3d91;">4. Tokenization</h2>
+    <ul>
+      <li>Replace sensitive data with meaningless tokens.</li>
+      <li>Example: Store only last 4 digits of a credit card.</li>
+    </ul>
+
+    <h2 style="color: #0b3d91;">5. Memory and Type Safety</h2>
+    <ul>
+      <li>Managed code: Automatic memory management.</li>
+      <li>Unmanaged code: Manual memory management.</li>
+      <li>Type safety: Prevents buffer overflow attacks.</li>
+    </ul>
+
+  </div>
+</div>
+</body>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; background-color: #f9f9f9; color: #111;">
+<div style="max-width: 900px; margin: auto; background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+
+
+  <h2 style="color: #1a73e8;">Error Handling & Exception Management in Secure Coding</h2>
+
+  <h3 style="color: #0b3d91;">1. Importance</h3>
+  <ul>
+    <li>Exceptions occur due to unexpected actions in an application (not syntax or logic errors).</li>
+    <li>Unhandled exceptions can expose sensitive information (e.g., database credentials, file paths, code structure).</li>
+    <li>Proper exception management ensures errors are handled <strong>without revealing sensitive information</strong>, reducing the risk of attacks.</li>
+    <li>Helps maintain system stability and user trust.</li>
+  </ul>
+
+  <h3 style="color: #0b3d91;">2. Error Handling Practices in Secure Coding</h3>
+  <ul>
+    <li><strong>Input Validation & Testing:</strong> Test application with all types of erroneous data. Anticipate invalid inputs (wrong data types, empty values, out-of-range numbers).</li>
+    <li><strong>Use of Try/Catch Blocks:</strong> Catch exceptions instead of letting system default messages appear. Wrap all database/file operations in try/catch.</li>
+    <li><strong>Custom Error Messages:</strong> Display user-friendly messages that do not reveal system or database information. Example: “An error occurred while processing your request. Please try again.”</li>
+    <li><strong>Logging Errors Securely:</strong> Log detailed exception info to server logs for developers only. Avoid logging passwords, API keys, or sensitive user data.</li>
+    <li><strong>Graceful Recovery:</strong> Allow the application to continue functioning or safely terminate affected operations. Prevent crashes that can be exploited.</li>
+    <li><strong>Avoid Hardcoding Sensitive Info:</strong> Never include credentials or system paths in messages or logs.</li>
+    <li><strong>Regular Vulnerability Testing:</strong> Use penetration testing and fuzzing to identify unhandled exceptions.</li>
+  </ul>
+
+  <h3 style="color: #0b3d91;">3. Exception Management Objectives</h3>
+  <ul>
+    <li><strong>Prevents Information Leakage:</strong> Hides database, file, or code details from attackers.</li>
+    <li><strong>Improves Security:</strong> Reduces chances of exploitation via unhandled exceptions.</li>
+    <li><strong>Enhances User Experience:</strong> Users see clear, safe error messages rather than confusing system errors.</li>
+    <li><strong>Facilitates Maintenance:</strong> Developers can review secure logs to debug without exposing sensitive info.</li>
+    <li><strong>Supports Compliance:</strong> Meets secure coding standards like CSSLP and OWASP recommendations.</li>
+  </ul>
+</div>
+</body>
+<body style="font-family:Arial, sans-serif; line-height:1.6; background:#f9f9f9; color:#111; padding:15px;">
+<div style="max-width: 900px; margin: auto; background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+
+  <h2 style="color:#1a73e8;">Input Validation & Injection Prevention</h2>
+
+  <h3 style="color:#0b5394;">Definition:</h3>
+  <p>Input validation is the process of verifying that all data received by an application is correct, safe, and conforms to expected formats before processing or storing it. It prevents malicious input, such as SQL injection, XSS, and other attacks.</p>
+
+  <h3 style="color:#0b5394;">Techniques:</h3>
+  <ul style="list-style-type:circle; padding-left:20px;">
+    <li><strong>Data Type Verification:</strong> Ensure input matches expected type (e.g., numeric, date).</li>
+    <li><strong>Length Checks:</strong> Set max/min limits to prevent overflow attacks.</li>
+    <li><strong>Character Checks:</strong> Use whitelists (allow safe chars) and blacklists (block harmful chars like ', --).</li>
+    <li><strong>Pattern Matching (Regex):</strong> Validate formats like emails, product IDs.</li>
+    <li><strong>Client & Server Validation:</strong> Client-side for feedback; server-side for security.</li>
+    <li><strong>Context-Aware Checks:</strong> Adapt rules for forms, APIs, payment gateways.</li>
+  </ul>
+
+  <h3 style="color:#0b5394;">Input Validation in Online Payment Gateway (Checks):</h3>
+  <ul style="list-style-type:circle; padding-left:20px;">
+    <li>Validate numeric fields (card numbers, CVV, transaction amount).</li>
+    <li>Check proper format of email, phone, and billing address.</li>
+    <li>Reject special characters that could lead to injection attacks.</li>
+    <li>Ensure mandatory fields are not empty.</li>
+    <li>Limit field lengths to prevent overflow attacks.</li>
+    <li>Verify transaction amount is within allowed limits.</li>
+    <li>Use server-side validation to confirm client-side checks.</li>
+  </ul>
+
+  <h3 style="color:#0b5394;">Input Validation vs Input Sanitization</h3>
+  <table style="width:100%; border-collapse:collapse; margin-top:10px;">
+    <thead>
+      <tr style="background:#1a73e8; color:#fff;">
+        <th style="padding:8px; border:1px solid #ccc;">Aspect</th>
+        <th style="padding:8px; border:1px solid #ccc;">Input Validation</th>
+        <th style="padding:8px; border:1px solid #ccc;">Input Sanitization</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:#e8f0fe;">
+        <td style="padding:8px; border:1px solid #ccc;">Purpose</td>
+        <td style="padding:8px; border:1px solid #ccc;">Verify correctness and expected format</td>
+        <td style="padding:8px; border:1px solid #ccc;">Clean or neutralize harmful content</td>
+      </tr>
+      <tr>
+        <td style="padding:8px; border:1px solid #ccc;">Focus</td>
+        <td style="padding:8px; border:1px solid #ccc;">Prevent invalid or malicious data entry</td>
+        <td style="padding:8px; border:1px solid #ccc;">Prevent execution of malicious input</td>
+      </tr>
+      <tr style="background:#e8f0fe;">
+        <td style="padding:8px; border:1px solid #ccc;">Example</td>
+        <td style="padding:8px; border:1px solid #ccc;">Check date is valid and within a range</td>
+        <td style="padding:8px; border:1px solid #ccc;">Escape characters like &lt;, &gt;, ', "</td>
+      </tr>
+      <tr>
+        <td style="padding:8px; border:1px solid #ccc;">Importance</td>
+        <td style="padding:8px; border:1px solid #ccc;">Ensures only valid data is processed</td>
+        <td style="padding:8px; border:1px solid #ccc;">Protects the system from injection/XSS attacks</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; background-color: #f9f9f9; color: #111; padding: 20px;">
+<div style="max-width: 900px; margin: auto; background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+
+  <h2 style="color: #1a73e8;">Session Management</h2>
+
+  <h3 style="color: #0b3d91;">Definition</h3>
+  <p>Session management is the process of securely handling user sessions after authentication. 
+  A session is established once a user logs in and is assigned a session ID, which must be protected 
+  to prevent impersonation or hijacking.</p>
+
+  <h3 style="color: #0b3d91;">Common Session Attacks</h3>
+  <ul>
+    <li><strong>Session Hijacking:</strong> Hacker steals the session ID to impersonate the user.</li>
+    <li><strong>Man-in-the-Middle (MITM):</strong> Hacker intercepts communication between user and server to capture session info.</li>
+    <li><strong>Session Fixation:</strong> Attacker forces a user to use a known session ID.</li>
+  </ul>
+
+  <h3 style="color: #0b3d91;">Best Practices</h3>
+  <ul>
+    <li><strong>Secure Session IDs:</strong> Random, long, unpredictable; regenerate after login.</li>
+    <li><strong>Secure Cookies:</strong> Use <code>HttpOnly</code>, <code>Secure</code>, <code>SameSite</code> flags.</li>
+    <li><strong>Timeouts & Expiry:</strong> Auto logout on inactivity or fixed duration.</li>
+    <li><strong>Server-Side Validation:</strong> Validate session ID and anti-CSRF/security tokens.</li>
+    <li><strong>Protect Session Data:</strong> No sensitive info in URLs, logs, or error messages.</li>
+    <li><strong>Monitor & Invalidate:</strong> Detect abnormal behavior, terminate compromised sessions.</li>
+  </ul>
+
+  <h3 style="color: #0b3d91;">Secure Session Management Plan for a Banking Application</h3>
+  <ul>
+    <li>Use HTTPS for all communication.</li>
+    <li>Generate strong, random session IDs and regenerate after login.</li>
+    <li>Implement <code>HttpOnly</code>, <code>Secure</code>, and <code>SameSite</code> flags on cookies.</li>
+    <li>Enforce short session timeouts and automatic logout on inactivity.</li>
+    <li>Use anti-CSRF tokens for all transaction requests.</li>
+    <li>Monitor sessions for abnormal behavior and invalidate compromised sessions immediately.</li>
+    <li>Store session info securely on the server, never expose it to the client.</li>
+  </ul>
+</div>
+</body>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; background-color: #f9f9f9; color: #111; padding: 20px;">
+<div style="max-width: 900px; margin: auto; background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+
+  <h2 style="color: #1a73e8;"> Logging & Auditing</h2>
+
+  <h3 style="color: #0b3d91;">Definition</h3>
+  <p>Logging and auditing are key security practices that record application events, user actions, and administrative operations. They help track <strong>who did what, when, and how</strong>, enabling monitoring, troubleshooting, and accountability.</p>
+
+  <h3 style="color: #0b3d91;">Types of Logging</h3>
+  <ul>
+    <li><strong>Error Logging:</strong> Capture errors with enough detail to diagnose and troubleshoot issues.</li>
+    <li><strong>User Action Logging:</strong> Track user operations like create, read, update, delete (CRUD) actions to monitor activity and detect misuse.</li>
+    <li><strong>Administrative Logging:</strong> Record admin tasks such as user creation, configuration changes, or data modifications for accountability.</li>
+  </ul>
+
+  <h3 style="color: #0b3d91;">Secure Logging & Auditing Practices</h3>
+  <ul>
+    <li>Log events to files or databases for reliability and report generation.</li>
+    <li>Use database auditing features (e.g., Oracle, SQL Server) to track changes to tables, user accounts, and environment settings.</li>
+    <li>Avoid logging sensitive data like passwords, tokens, or personal information.</li>
+    <li>Provide configurable logging levels for administrators to enable/disable detailed audit logs as needed.</li>
+    <li>Ensure logs are protected against tampering or unauthorized access.</li>
+    <li>Regularly review logs to detect anomalies or security incidents.</li>
+  </ul>
+
+  <h3 style="color: #0b3d91;">Benefits</h3>
+  <ul>
+    <li>Helps identify security breaches and unauthorized activities.</li>
+    <li>Supports troubleshooting and root-cause analysis.</li>
+    <li>Ensures accountability and compliance with security policies.</li>
+    <li>Enables reporting and auditing for administrative decisions.</li>
+  </ul>
+</div>
+</body>
+
+<body style="font-family: Arial, sans-serif; line-height: 1.6; background-color: #f9f9f9; color: #111; padding: 20px;">
+<div style="max-width: 900px; margin: auto; background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+
+  <h2 style="color: #1a73e8;"> Concurrency & Configuration in Secure Coding</h2>
+
+  <h3 style="color: #0b3d91;">Concurrency</h3>
+  <p><strong>Definition:</strong> Concurrency is the ability of an application to handle multiple operations or user requests simultaneously without errors or data corruption.</p>
+  <p><strong>Importance in Secure Coding:</strong></p>
+  <ul>
+    <li>Prevents <strong>race conditions</strong> where multiple processes access shared resources in unsafe ways.</li>
+    <li>Ensures <strong>data integrity</strong> and consistency when multiple users access or modify the same data.</li>
+    <li>Reduces risks of <strong>security vulnerabilities</strong> caused by unexpected state changes or resource conflicts.</li>
+    <li>Improves system performance and reliability while maintaining security.</li>
+  </ul>
+
+  <h3 style="color: #0b3d91;">Configuration</h3>
+  <p><strong>Definition:</strong> Configuration involves securely setting up software, hardware, and network parameters to prevent misconfigurations that can lead to vulnerabilities.</p>
+  <p><strong>Key Practices:</strong></p>
+  <ul>
+    <li>Disable default accounts, passwords, and unnecessary services.</li>
+    <li>Use secure protocols (HTTPS, SSH) and strong encryption settings.</li>
+    <li>Implement principle of least privilege for users and services.</li>
+    <li>Keep software and libraries up to date with security patches.</li>
+    <li>Regularly review and audit configuration settings to detect and fix insecure defaults.</li>
+    <li>Securely manage configuration files, avoiding sensitive information in source code or logs.</li>
+  </ul>
+
+  </div>
+</body>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; background-color: #f9f9f9; color: #111; padding: 20px;">
+<div style="max-width: 900px; margin: auto; background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+
+  <h2 style="color: #1a73e8;"> Secure Testing Practices</h2>
+
+  <h3 style="color: #0b3d91;">1. Static Testing (White-box Testing)</h3>
+  <p><strong>Definition:</strong> Examining code, configuration, or documentation without executing the program to identify security vulnerabilities.</p>
+  <ul>
+    <li>Tools: Static Application Security Testing (SAST) tools.</li>
+    <li>Checks: Code vulnerabilities, insecure API calls, input validation flaws.</li>
+    <li>Advantages: Early detection, cost-effective, finds hidden logic errors.</li>
+    <li>Limitations: Cannot detect runtime issues like environment-specific vulnerabilities.</li>
+  </ul>
+
+  <h3 style="color: #0b3d91;">2. Dynamic Testing (Black-box Testing)</h3>
+  <p><strong>Definition:</strong> Testing the application during execution to identify security vulnerabilities in real-time.</p>
+  <ul>
+    <li>Tools: Dynamic Application Security Testing (DAST) tools, automated scanners.</li>
+    <li>Checks: Input validation, authentication, session management, access control.</li>
+    <li>Advantages: Detects runtime issues, simulates real attacks.</li>
+    <li>Limitations: Limited code coverage, may miss hidden code vulnerabilities.</li>
+  </ul>
+
+  <h3 style="color: #0b3d91;">3. Comparison: Static vs Dynamic Testing</h3>
+  <table style="border-collapse: collapse; width: 100%; margin-top: 10px;">
+    <tr style="background-color: #dbe9ff;">
+      <th style="border: 1px solid #aaa; padding: 8px;">Aspect</th>
+      <th style="border: 1px solid #aaa; padding: 8px;">Static Testing</th>
+      <th style="border: 1px solid #aaa; padding: 8px;">Dynamic Testing</th>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #aaa; padding: 8px;">Execution</td>
+      <td style="border: 1px solid #aaa; padding: 8px;">No execution required</td>
+      <td style="border: 1px solid #aaa; padding: 8px;">Requires application to run</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #aaa; padding: 8px;">Detects</td>
+      <td style="border: 1px solid #aaa; padding: 8px;">Code-level vulnerabilities</td>
+      <td style="border: 1px solid #aaa; padding: 8px;">Runtime and environment-specific vulnerabilities</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #aaa; padding: 8px;">Tools</td>
+      <td style="border: 1px solid #aaa; padding: 8px;">SAST</td>
+      <td style="border: 1px solid #aaa; padding: 8px;">DAST, vulnerability scanners</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #aaa; padding: 8px;">Timing</td>
+      <td style="border: 1px solid #aaa; padding: 8px;">Early in development</td>
+      <td style="border: 1px solid #aaa; padding: 8px;">During/after deployment</td>
+    </tr>
+  </table>
+
+  <h3 style="color: #0b3d91;">4. Vulnerability Scanning & Penetration Testing</h3>
+  <ul>
+    <li><strong>Vulnerability Scanning:</strong> Automated scanning to detect known security weaknesses in code, configurations, or infrastructure.</li>
+    <li><strong>Penetration Testing:</strong> Manual or automated simulation of attacks to exploit vulnerabilities and assess real-world risk.</li>
+    <li>Importance: Identifies both known and unknown vulnerabilities, helps fix them before attackers exploit them.</li>
+    <li>Best Practice: Combine SAST, DAST, vulnerability scanning, and penetration testing for a robust secure testing approach.</li>
+  </ul>
+</div>
+</body>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; background-color: #f9f9f9; color: #111; padding: 20px;">
+<div style="max-width: 900px; margin: auto; background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+
+  <h2 style="color: #1a73e8;"> Declarative & Programmatic Security</h2>
+
+  <h3 style="color: #0b3d91;">1. Declarative Security</h3>
+  <p><strong>Definition:</strong> Security rules are defined outside the code, typically in a configuration file, and enforced by the application container.</p>
+  <ul>
+    <li>Uses configuration files (e.g., XML, web.config) to specify authentication and authorization rules.</li>
+    <li>Rules are centrally managed and flexible; can change per deployment without modifying code.</li>
+    <li>Managed by operations, not developers.</li>
+    <li>Example: ASP.NET web app with web.config defining roles and access permissions.</li>
+    <li>Benefits: Flexibility, easy to update security rules, reduces need for recompilation.</li>
+  </ul>
+
+  <h3 style="color: #0b3d91;">2. Programmatic (Imperative) Security</h3>
+  <p><strong>Definition:</strong> Security rules are implemented directly in the application code.</p>
+  <ul>
+    <li>Security logic embedded in code; can enforce complex business rules.</li>
+    <li>Less flexible than declarative; changing rules requires code modification and redeployment.</li>
+    <li>Rules can be reused across components but are specific to application logic.</li>
+    <li>Example: Custom access control checks coded within application methods.</li>
+    <li>Benefits: Supports complex, fine-grained security requirements; consistent enforcement across the application.</li>
+  </ul>
+
+  <h3 style="color: #0b3d91;">3. Comparison: Declarative vs Programmatic Security</h3>
+  <table style="border-collapse: collapse; width: 100%; margin-top: 10px;">
+    <tr style="background-color: #dbe9ff;">
+      <th style="border: 1px solid #aaa; padding: 8px;">Aspect</th>
+      <th style="border: 1px solid #aaa; padding: 8px;">Declarative Security</th>
+      <th style="border: 1px solid #aaa; padding: 8px;">Programmatic Security</th>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #aaa; padding: 8px;">Location</td>
+      <td style="border: 1px solid #aaa; padding: 8px;">Configuration file</td>
+      <td style="border: 1px solid #aaa; padding: 8px;">Embedded in code</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #aaa; padding: 8px;">Flexibility</td>
+      <td style="border: 1px solid #aaa; padding: 8px;">High; can change per deployment</td>
+      <td style="border: 1px solid #aaa; padding: 8px;">Low; changes require code update</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #aaa; padding: 8px;">Complex Rules</td>
+      <td style="border: 1px solid #aaa; padding: 8px;">Limited</td>
+      <td style="border: 1px solid #aaa; padding: 8px;">Supports complex business logic</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #aaa; padding: 8px;">Management</td>
+      <td style="border: 1px solid #aaa; padding: 8px;">Operations/Deployment team</td>
+      <td style="border: 1px solid #aaa; padding: 8px;">Developers</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #aaa; padding: 8px;">Example</td>
+      <td style="border: 1px solid #aaa; padding: 8px;">web.config in ASP.NET</td>
+      <td style="border: 1px solid #aaa; padding: 8px;">Custom code checks for user roles</td>
+    </tr>
+  </table>
+
+  <p><strong>Conclusion:</strong> Declarative security is preferred for flexibility and deployment-based rules, while programmatic security is used when enforcing complex business logic within the application code.</p>
+</div>
+</body>
+<body style="font-family: Arial, sans-serif; background-color: #f5f5f5; padding: 20px;">
+<div style="max-width: 900px; margin: auto; background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+
+  <h2 style="text-align: center; color: #2c3e50;">HTTP vs HTTPS</h2>
+  <table style="width: 100%; border-collapse: collapse; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    <tr style="background-color: #3498db; color: white; text-align: left;">
+      <th style="padding: 12px;">HTTP</th>
+      <th style="padding: 12px;">HTTPS</th>
+    </tr>
+    <tr style="background-color: #ecf0f1;">
+      <td style="padding: 12px;">Data transmitted in plaintext; vulnerable to eavesdropping</td>
+      <td style="padding: 12px;">Data transmitted is encrypted using TLS/SSL; secure from interception</td>
+    </tr>
+    <tr>
+      <td style="padding: 12px; background-color: #ecf0f1;">Uses port 80</td>
+      <td style="padding: 12px; background-color: #ecf0f1;">Uses port 443</td>
+    </tr>
+    <tr>
+      <td style="padding: 12px;">Faster due to less overhead</td>
+      <td style="padding: 12px;">Slightly slower due to encryption/decryption</td>
+    </tr>
+    <tr style="background-color: #ecf0f1;">
+      <td style="padding: 12px;">No authentication</td>
+      <td style="padding: 12px;">Provides server authentication via certificates; optionally client authentication</td>
+    </tr>
+    <tr>
+      <td style="padding: 12px; background-color: #ecf0f1;">No guarantee of data integrity; can be modified by attackers</td>
+      <td style="padding: 12px; background-color: #ecf0f1;">Ensures data integrity; detects tampering</td>
+    </tr>
+    <tr>
+      <td style="padding: 12px;">Suitable for public, non-sensitive content</td>
+      <td style="padding: 12px;">Suitable for banking, e-commerce, login forms, and sensitive data</td>
+    </tr>
+  </table>
+</div>
+</body>
+
+<body style="font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px;">
+<div style="max-width: 900px; margin: auto; background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+
+  <h2 style="text-align: center; color: #2c3e50;">Tokenization and Its Purpose in Security</h2>
+
+  <h3 style="color: #2980b9;">Definition:</h3>
+  <p style="background-color: #ecf0f1; padding: 12px; border-left: 5px solid #2980b9;">
+    Tokenization is the process of replacing sensitive data (e.g., credit card numbers, personal identifiers) 
+    with a non-sensitive placeholder called a token, which has no exploitable value outside the system.
+  </p>
+
+  <h3 style="color: #2980b9;">Purpose in Security:</h3>
+  <ul style="background-color: #ecf0f1; padding: 12px; border-left: 5px solid #2980b9;">
+    <li><strong>Data Protection:</strong> Sensitive information is never stored or transmitted in its original form, reducing the risk of data breaches.</li>
+    <li><strong>Compliance:</strong> Helps meet regulatory requirements like PCI DSS by reducing scope of sensitive data handling.</li>
+    <li><strong>Reduced Impact of Attacks:</strong> Tokens are useless if intercepted by hackers.</li>
+    <li><strong>Limited Data Exposure:</strong> Only the system mapping tokens to original data can retrieve the actual sensitive information.</li>
+    <li><strong>Simplifies Security Design:</strong> Applications can operate on tokens instead of real data.</li>
+  </ul>
+
+  <h3 style="color: #2980b9;">Example:</h3>
+  <p style="background-color: #ecf0f1; padding: 12px; border-left: 5px solid #2980b9;">
+    Instead of storing <strong>4111-1111-1111-1111</strong> (credit card), store <strong>TKN12345</strong>; 
+    the actual card number is securely stored in a separate token vault.
+  </p>
+</body>
+</div>
+</body>
+
+</html>
